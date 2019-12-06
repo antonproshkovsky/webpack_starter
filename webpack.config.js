@@ -1,9 +1,13 @@
 const path = require('path');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const babel = require('./webpack/babel');
 const scss = require('./webpack/scss');
 const devserver = require('./webpack/devserver');
+const images = require('./webpack/images');
 
 const PATHS = {
   assets: path.join(__dirname, 'assets'),
@@ -19,13 +23,21 @@ const common = merge([
       path: PATHS.bundle,
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: "[name].css",
+      }),
+      new HtmlWebpackPlugin({
+        template: PATHS.assets + '/index.html',
+        minify: {
+          collapseWhitespace: true
+        }
       })
     ]
   },
   babel(),
-  scss(MiniCssExtractPlugin)
+  scss(MiniCssExtractPlugin),
+  images()
 ]);
 
 module.exports = function (env, argv) {
