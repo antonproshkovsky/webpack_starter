@@ -1,3 +1,5 @@
+@import "~malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css";
+
 body{
   overflow: hidden;
 }
@@ -6,6 +8,10 @@ body{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.mCSB_inside > .mCSB_container{
+  margin-right: 0;
 }
 
 .scrolling-content{
@@ -26,6 +32,23 @@ body{
 }
 
 .about{
+  position: relative;
   padding: 30%;
-  display: flex;
+  .circle{
+    position: absolute;
+    left: 20%;
+    top: 20%;
+    width: 100px;
+    height: 100px;
+    background-color: #f11212;
+    border-radius: 50%;
+  }
+  .square{
+    position: absolute;
+    right: 20%;
+    top: 20%;
+    width: 100px;
+    height: 100px;
+    background-color: #f11212;
+  }
 }
