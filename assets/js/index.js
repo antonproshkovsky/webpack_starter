@@ -5,9 +5,10 @@ const sc = new Scrolling($('.scrolling-content'), {
   theme:"dark",
   scrollInertia: 700,
   scrollEasing:"easeInOut",
-  snapAmount: 70
+  snapAmount: 70,
+  advanced: {
+    updateOnContentResize: true
+  },
 });
-
-console.log(sc);
 
 sc.init();

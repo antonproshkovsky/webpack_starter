@@ -17,11 +17,15 @@ export class Scrolling {
     let scrollTop = this.mcs.top;
 
     $parallaxElements.each((index, element) => {
-      if($(element).is(':mcsInSight') || $(element).css('transform') == 'none') {
         var scrollSpeed = parseInt($(element).data('scroll-speed')),
-          val = -scrollTop * (scrollSpeed / 5);
-        $(element).css('transform', 'translateY(' + val + 'px)');
-      }
+          $container = $(element).closest('[data-parallax-container]'),
+          val = ((-scrollTop) - $container[0].offsetTop + $(element)[0].offsetTop) * (scrollSpeed / 5);
+
+        console.log($(element).css('transform'));
+
+        if(val < $container.height()) {
+          $(element).css('transform', 'translateY(' + val + 'px)');
+        }
     });
   }
 
